@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>TRALALELO TRALALA</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #000000;
+    }
+    #viewer {
+      width: 426px;           /* 원하는 해상도로 수정 가능 */
+      height: 240px;
+      object-fit: cover;      /* 종횡비가 달라도 꽉 채움 */
+    }
+  </style>
+</head>
+<body>
+  <img id="viewer" src="0.jpeg" alt="viewer">
+  <script>
+    const frames = [
+      "0.jpeg",
+      "2.jpeg",
+      "4.jpeg",
+      "6.jpeg",
+      "8.jpeg",
+      "10.jpeg",
+      "12.jpeg",
+      "14.jpeg",
+      "16.jpeg",
+      "18.jpeg",
+      "20.jpeg",
+      "22.jpeg",
+      "24.jpeg",
+      "26.jpeg",
+      "28.jpeg",
+      "30.jpeg",
+      "32.jpeg",
+      "34.jpeg",
+      "36.jpeg",
+      "38.jpeg",
+      "40.jpeg",
+      "42.jpeg",
+      "44.jpeg",
+      "46.jpeg",
+    ];
+
+    const FPS = 10;                // 초당 프레임 수 (10 = 0.1초당 한 장)
+
+    // 이미지 미리 로드 ‑ 깜박임 방지용
+    frames.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    const viewer = document.getElementById("viewer");
+    let idx = 0;
+    const interval = 1000 / FPS;
+
+    // 주기적으로 src 교체하여ss GIF처럼 재생한다
+    setInterval(() => {
+      idx = (idx + 1) % frames.length;
+      viewer.src = frames[idx];
+    }, interval);
+  </script>
+</body>
+</html>
